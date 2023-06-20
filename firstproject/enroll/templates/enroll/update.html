@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>CRUD</title>
+</head>
+<body>
+    {% block contant %}
+      <div class="header mb-4 my-3">
+        <p><h2>Function Based View ModelForm CRUD Project</h2></p>
+      </div>
+      <div class="row">
+          <div class="col-sm-8 offset-2">
+            <div class="header mb-4 my-3">
+              <p><h2>Update Student Information</h2></p>
+            </div>
+            
+              <form action="" method="POST">
+                {% csrf_token %}
+                {{ forms.as_p }}
+                <input type="submit" class="btn btn-success" value="Update">
+                <a href="{% url 'home' %}" class="btn btn-info"> Back to Home  </a>
+            </form>
+          </div>
+      </div>
+      {% endblock contant %}
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+</body>
+</html>

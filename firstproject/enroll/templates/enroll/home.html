@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>CRUD</title>
+</head>
+<body class="body">
+    <div class="header mb-4 my-3">
+        <h1>CRUD</h1>
+        <p><h2>Function Based View ModelForm CRUD Project</h2></p>
+      </div>
+    <div class="row">
+
+        <div class="col-sm-4  mx-4 mb-4  ">
+            <div class="p my-2"><h3>Add New Student</h3></div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>
+                    <label for="id_name" class="form-label">Name:</label>
+                    <input type="text" name="name" class="form-control" maxlength="50" required id="id_name">
+                </p> 
+                  <p>
+                    <label for="id_email" class="form-label">Email:</label>
+                    <input type="email" name="email" class="form-control" maxlength="40" required id="id_email">
+                  </p>
+                  <p>
+                    <label for="id_password" class="form-label">Password:</label>
+                    <input type="password" name="password" class="form-control" maxlength="80" required id="id_password">
+                  </p>
+                <input type="submit" class="btn btn-success" value="ADD">
+            </form>
+        </div>
+
+        <div class="col-sm-7 offset-1 mx-4">
+            <div class="p my-2"><h3>Show Student Informations</h3></div>
+            <table class="table table-hover">
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Action</th>
+                    
+
+                  </tr>
+
+                  {% for i in form %}
+                    <tr>
+                      <td scop="row">{{i.id}}</td>
+                      <td>{{i.name}}</td>
+                      <td>{{i.email}}</td>
+                      <td>{{i.password}}</td>
+                      <td>
+                        <form action="{% url 'update' i.id %}" method="post" class="d-inline">
+                          {% csrf_token %}
+                          <input type="submit" class="btn btn-warning" value="Edit">
+                        </form>
+
+                        <form action="{% url 'deletedata' i.id %}" method="post" class="d-inline">
+                          {% csrf_token %}
+                          <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                        
+                      </td>
+                    </tr>
+                  {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
